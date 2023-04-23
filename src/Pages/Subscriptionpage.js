@@ -17,7 +17,6 @@ const Subscriptionpage = () => {
       .then((querySnapshot) => {
         querySnapshot.forEach(async (subscription) => {
           setSubscription({
-            roles: subscription.data().priceId,
             current_period_end: subscription.data().current_period_end.seconds,
             current_period_start:
               subscription.data().current_period_start.seconds,
@@ -67,7 +66,7 @@ const Subscriptionpage = () => {
         setProducts(products);
       });
   }, []);
-
+  console.log(subscription);
   return (
     <div className="Subscription_page" key={user.uid}>
       {Object.entries(products).map(([productId, productData]) => {
@@ -77,9 +76,9 @@ const Subscriptionpage = () => {
               <h3>{productData.name}</h3>
               <h6>{productData.description}</h6>
             </div>
-            <button
-              onClick={() => checkplans(productData.prices.priceId)}
-            ></button>
+            <button onClick={() => checkplans(productData.prices.priceId)}>
+              Subscribe
+            </button>
           </div>
         );
       })}
